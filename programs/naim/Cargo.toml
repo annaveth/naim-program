@@ -1,0 +1,32 @@
+[package]
+name = "naim"
+version = "0.1.0"
+description = "NAIM — namespace protocol for AI agents on Solana"
+edition = "2021"
+rust-version = "1.79.0"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "naim"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+
+[dependencies]
+anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
+anchor-spl = { version = "0.32.1", features = ["token", "associated_token", "token_2022"] }
+solana-sha256-hasher = "2.3.0"
+solana-security-txt = "1.1.1"
+
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
